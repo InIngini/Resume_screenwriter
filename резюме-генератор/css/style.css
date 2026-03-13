@@ -1,0 +1,649 @@
+/* резюме-генератор/css/style.css */
+@import url('variables.css');
+
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0b0c0e 0%, #1a1d21 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* ========== ШАПКА ГЕНЕРАТОРА ========== */
+.generator-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.generator-header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    background: var(--gradient-name);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+}
+
+.generator-header .subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+}
+
+/* ========== ДВУХКОЛОНОЧНАЯ ВЕРСТКА ========== */
+.generator-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-column, .preview-column {
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-card);
+    padding: 0 2rem;
+    border: 1px solid var(--color-border);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.form-column h2, .preview-column h2 {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--color-bg-primary);
+    z-index: 10;
+}
+
+/* ========== СТИЛИ ФОРМЫ ========== */
+.resume-form fieldset {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-form);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resume-form legend {
+    color: var(--color-text-accent);
+    font-weight: 600;
+    padding: 0 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.link-entry, .project-entry, .reason-entry {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-form);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-border);
+}
+
+.project-entry h4, .reason-entry h4 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* ========== КНОПКИ ========== */
+.btn-primary, .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-hover);
+}
+
+.btn-secondary {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-light);
+}
+
+.btn-secondary:hover {
+    background: #2f3842; /* Можно добавить переменную, если нужно */
+    color: #ffffff;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    position: sticky;
+    bottom: 0;
+    background: var(--color-bg-primary);
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+}
+
+#addLinkBtn, #addProjectBtn, #addReasonBtn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* ========== ПРЕДПРОСМОТР РЕЗЮМЕ ========== */
+.resume-preview {
+    background: var(--color-bg-secondary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 600px;
+}
+
+/* ========== СТИЛИ РЕЗЮМЕ (ИЗ ТВОЕГО ШАБЛОНА) ========== */
+.resume-card {
+    max-width: 100%;
+    background: var(--color-bg-primary);
+    border-radius: var(--border-radius-card);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.header {
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-header);
+}
+
+.name-title h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    background: var(--gradient-name);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+}
+
+.name-title .tagline {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+}
+
+.quick-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    border-top: 1px dashed var(--color-border);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+}
+
+.quick-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quick-info i {
+    font-style: normal;
+    color: var(--color-accent);
+    font-weight: 500;
+    min-width: 70px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+}
+
+.sidebar {
+    background: var(--color-bg-secondary);
+    padding: 1.5rem;
+    border-right: 1px solid var(--color-border);
+}
+
+.photo-placeholder {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: var(--color-bg-tertiary);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 3px solid var(--color-accent);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-placeholder:empty {
+    background: var(--color-bg-tertiary) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="%235f6b7a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>') no-repeat center;
+    background-size: 40% 40%;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-accent);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.4rem;
+}
+
+.link-list {
+    list-style: none;
+}
+
+.link-list li {
+    margin-bottom: 0.6rem;
+}
+
+.link-list a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+    word-break: break-all;
+}
+
+.link-list a:hover {
+    color: var(--color-accent);
+}
+
+.link-list .bullet {
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    display: inline-block;
+    width: 1rem;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.badge {
+    background: var(--color-bg-tertiary);
+    color: #cbd5e1; /* Можно оставить или тоже вынести в переменную */
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--border-radius-badge);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--color-border-light);
+}
+
+.main-content {
+    padding: 1.5rem;
+    background: var(--color-bg-primary);
+}
+
+.content-block {
+    margin-bottom: 1.5rem;
+}
+
+.content-block p {
+    margin-bottom: 0.8rem;
+    color: #cfd9e6; /* Можно заменить на более светлую переменную, если нужно */
+    font-size: 0.9rem;
+}
+
+.project-item {
+    margin-bottom: 1.2rem;
+}
+
+.project-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+}
+
+.project-meta {
+    font-size: 0.75rem;
+    color: var(--color-text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+}
+
+.project-item ul {
+    list-style: none;
+    margin-top: 0.3rem;
+}
+
+.project-item li {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.2rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.project-item li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+.quote-line {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-text-secondary);
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-note {
+    font-size: 0.75rem;
+    color: var(--color-text-detail);
+    text-align: right;
+    margin-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.8rem;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 1000px) {
+    .generator-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
+@media (max-width: 700px) {
+    .header {
+        padding: 1.5rem;
+    }
+    
+    .name-title h1 {
+        font-size: 2rem;
+    }
+    
+    .quick-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Добавить в конец файла style.css */
+
+/* Новая структура формы */
+.form-left, .form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Блоки с возможностью добавления */
+.dynamic-block legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.add-block-btn {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-light);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 0.5rem;
+}
+
+.add-block-btn:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+}
+
+.block-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Кастомные блоки */
+.custom-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.custom-block {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-form);
+    padding: 1.5rem;
+    position: relative;
+}
+
+.custom-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.custom-block-title {
+    font-weight: 600;
+    color: var(--color-text-accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.remove-block-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-detail);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    transition: color 0.2s;
+}
+
+.remove-block-btn:hover {
+    color: var(--color-accent);
+}
+
+.custom-block-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.skill-entry {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-form);
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.skill-title {
+    font-weight: 600;
+    background: transparent;
+    border: none;
+    color: var(--color-text-accent);
+    font-size: 1rem;
+    padding: 0;
+    width: auto;
+    flex-grow: 1;
+}
+
+.skill-title:focus {
+    outline: none;
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.skill-tags {
+    width: 100%;
+}
+/* Кнопка добавления блока */
+.btn-block {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 2px dashed var(--color-border);
+    background: transparent;
+    color: var(--color-text-secondary);
+}
+
+.btn-block:hover {
+    border-color: var(--color-accent);
+    background: rgba(232, 111, 94, 0.1);
+    color: var(--color-accent);
+}
+/* Кнопка переключения страниц (как в корне) */
+.page-switcher {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+}
+
+.switch-btn {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-light);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+}
+
+.switch-btn:hover {
+    background: #2f3842;
+    color: #ffffff;
+    border-color: var(--color-accent);
+}
+/* Адаптивность */
+@media (min-width: 1000px) {
+    .resume-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-actions {
+        grid-column: span 2;
+    }
+}

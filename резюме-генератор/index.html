@@ -1,0 +1,198 @@
+<!-- резюме-генератор/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор резюме | В стиле «Пороки»</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <!-- Кнопка возврата на главную -->
+    <div class="page-switcher">
+        <button onclick="window.location.href='../index.html'" class="switch-btn">
+            ← На главную
+        </button>
+    </div>
+
+    <div class="container">
+        <header class="generator-header">
+            <h1>Генератор резюме</h1>
+            <p class="subtitle">в стиле темного фэнтези</p>
+        </header>
+
+        <div class="generator-layout">
+            <!-- Форма для заполнения -->
+            <div class="form-column">
+                <h2>Заполните данные</h2>
+                <form id="resumeForm" class="resume-form">
+                    
+                    <!-- ЛЕВАЯ КОЛОНКА ФОРМЫ - базовые поля -->
+                    <div class="form-left">
+                        <!-- Личная информация -->
+                        <fieldset>
+                            <legend>Личная информация</legend>
+                            
+                            <div class="form-group">
+                                <label for="name">ФИО</label>
+                                <input type="text" id="name" placeholder="Дарья Воробьева">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tagline">Профессия / теги</label>
+                                <input type="text" id="tagline" placeholder="сценарист · писатель · разработчик">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="birthdate">Дата рождения</label>
+                                    <input type="text" id="birthdate" placeholder="03.07.2003">
+                                </div>
+                                <div class="form-group">
+                                    <label for="citizenship">Гражданство</label>
+                                    <input type="text" id="citizenship" placeholder="Россия">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Контакты -->
+                        <fieldset>
+                            <legend>Контакты</legend>
+                            
+                            <div class="form-group">
+                                <label for="telegram">Telegram</label>
+                                <input type="text" id="telegram" placeholder="@username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="email@example.com">
+                            </div>
+                        </fieldset>
+
+                        <!-- Фото -->
+                        <fieldset>
+                            <legend>Фото</legend>
+                            <div class="form-group">
+                                <label for="photo">Ссылка на фото (URL)</label>
+                                <input type="url" id="photo" placeholder="https://...">
+                            </div>
+                        </fieldset>
+
+                        <!-- О себе -->
+                        <fieldset>
+                            <legend>О себе</legend>
+                            <div class="form-group">
+                                <textarea id="about" rows="4" placeholder="Расскажите о себе..."></textarea>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- ПРАВАЯ КОЛОНКА ФОРМЫ - базовые блоки + кастомные -->
+                    <div class="form-right">
+                        <!-- НАВЫКИ - теперь это динамические блоки -->
+                        <fieldset class="dynamic-block" data-block-type="skills">
+                            <legend>
+                                Навыки
+                                <button type="button" class="add-block-btn" data-block="skills">+</button>
+                            </legend>
+                            
+                            <div id="skillsContainer" class="block-container">
+                                <!-- Сюда будут добавляться блоки навыков -->
+                            </div>
+                        </fieldset>
+
+                        <!-- ПОРТФОЛИО / ССЫЛКИ -->
+                        <fieldset class="dynamic-block" data-block-type="links">
+                            <legend>
+                                Портфолио / ссылки
+                                <button type="button" class="add-block-btn" data-block="links">+</button>
+                            </legend>
+                            
+                            <div id="linksContainer" class="block-container">
+                                <!-- Ссылки будут добавляться сюда -->
+                            </div>
+                        </fieldset>
+
+                        <!-- КЛЮЧЕВЫЕ ПРОЕКТЫ -->
+                        <fieldset class="dynamic-block" data-block-type="projects">
+                            <legend>
+                                Ключевые проекты
+                                <button type="button" class="add-block-btn" data-block="projects">+</button>
+                            </legend>
+                            
+                            <div id="projectsContainer" class="block-container">
+                                <!-- Проекты будут добавляться сюда -->
+                            </div>
+                        </fieldset>
+
+                        <!-- ПОЧЕМУ Я ПОДХОЖУ -->
+                        <fieldset class="dynamic-block" data-block-type="reasons">
+                            <legend>
+                                Почему я подхожу
+                                <button type="button" class="add-block-btn" data-block="reasons">+</button>
+                            </legend>
+                            
+                            <div id="reasonsContainer" class="block-container">
+                                <!-- Причины будут добавляться сюда -->
+                            </div>
+                        </fieldset>
+
+                        <!-- МОТИВАЦИЯ (всегда один блок, но тоже блок) -->
+                        <fieldset class="static-block" data-block-type="motivation">
+                            <legend>Почему эта вакансия</legend>
+                            <div class="form-group">
+                                <textarea id="motivation" rows="4" placeholder="Ваша мотивация..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- ЦИТАТА (всегда один блок, опционально) -->
+                        <fieldset class="static-block" data-block-type="quote">
+                            <legend>Цитата (опционально)</legend>
+                            <div class="form-group">
+                                <label for="quoteText">Текст цитаты</label>
+                                <input type="text" id="quoteText" placeholder="Тьма не приходит извне...">
+                            </div>
+                            <div class="form-group">
+                                <label for="quoteAuthor">Автор цитаты</label>
+                                <input type="text" id="quoteAuthor" placeholder="из цикла «Пороки»">
+                            </div>
+                        </fieldset>
+
+                        <!-- КАСТОМНЫЕ БЛОКИ -->
+                        <div id="customBlocksContainer" class="custom-blocks"></div>
+
+                        <!-- Кнопка добавления кастомного блока -->
+                        <button type="button" id="addCustomBlockBtn" class="btn-secondary btn-block">
+                            + Добавить кастомный блок
+                        </button>
+                    </div>
+
+                    <!-- Кнопки действий -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Обновить резюме</button>
+                        <button type="button" id="downloadPdfBtn" class="btn-secondary">Скачать PDF</button>
+                        <button type="button" id="resetBtn" class="btn-secondary">Очистить всё</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Предпросмотр резюме -->
+            <div class="preview-column">
+                <h2>Предпросмотр</h2>
+                <div id="resumePreview" class="resume-preview">
+                    <!-- Сюда будет вставляться сгенерированное резюме -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/form-handler.js"></script>
+    <script src="js/pdf-generator.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

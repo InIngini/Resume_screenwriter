@@ -1,0 +1,32 @@
+/* резюме-генератор/css/variables.css */
+:root {
+    /* Основная цветовая палитра (темная тема) */
+    --color-bg-primary: #1e2227;      /* Основной фон */
+    --color-bg-secondary: #171b20;    /* Фон сайдбара, карточек */
+    --color-bg-tertiary: #262d35;     /* Фон для бейджей, полей ввода */
+    --color-bg-header: radial-gradient(circle at 100% 0%, #2a2f37 0%, #1a1e24 100%);
+    
+    /* Цвета границ */
+    --color-border: #2f353d;
+    --color-border-light: #3a424b;
+    --color-border-accent: #e86f5e;   /* Акцентный цвет для границ */
+    
+    /* Цвета текста */
+    --color-text-primary: #e2e4e6;
+    --color-text-secondary: #b5c0d0;
+    --color-text-muted: #9aa5b5;
+    --color-text-detail: #6f7a8a;
+    --color-text-accent: #a9705e;      /* Акцентный текст (оранжеватый) */
+    
+    /* Акцентный цвет (оранжевый/коралловый) */
+    --color-accent: #e86f5e;
+    --color-accent-hover: #d55a48;
+    
+    /* Градиенты */
+    --gradient-name: linear-gradient(to right, #ffffff, #c0c7d2);
+    
+    /* Скругления (будем их контролировать) */
+    --border-radius-card: 28px;
+    --border-radius-form: 12px;
+    --border-radius-badge: 30px;       /* Для экрана, но для PDF сбросим в 0 */
+}
