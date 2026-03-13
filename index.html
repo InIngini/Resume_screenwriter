@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дарья Воробьева | Сценарист</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0b0c0e 0%, #1a1d21 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+            color: #e2e4e6;
+        }
+
+        .resume-card {
+            max-width: 1000px;
+            width: 100%;
+            background: #1e2227;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
+
+        .header {
+            padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+            border-bottom: 1px solid #2f353d;
+            background: radial-gradient(circle at 100% 0%, #2a2f37 0%, #1a1e24 100%);
+        }
+
+        .name-title h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #ffffff, #c0c7d2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+        }
+
+        .name-title .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #9aa5b5;
+            margin-bottom: 1.25rem;
+        }
+
+        .quick-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            font-size: 0.95rem;
+            color: #b5c0d0;
+            border-top: 1px dashed #2f353d;
+            padding-top: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-info i { 
+            font-style: normal;
+            color: #e86f5e; 
+            font-weight: 500;
+            min-width: 70px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: #171b20;
+            padding: 2rem 1.8rem;
+            border-right: 1px solid #2f353d;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #262d35;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            border: 3px solid #e86f5e;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6b7a;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-placeholder:not(:has(img)) {
+            background: #262d35 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="%235f6b7a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>') no-repeat center;
+            background-size: 40% 40%;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #a9705e;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid #2f353d;
+            padding-bottom: 0.5rem;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .link-list a {
+            color: #b5c0d0;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+            word-break: break-all;
+        }
+
+        .link-list a:hover {
+            color: #e86f5e;
+        }
+
+        .link-list .bullet {
+            color: #e86f5e;
+            font-size: 0.8rem;
+            line-height: 1;
+            display: inline-block;
+            width: 1rem;
+            text-align: center;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .badge {
+            background: #262d35;
+            color: #cbd5e1;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #3a424b;
+        }
+
+        .main-content {
+            padding: 2rem 2rem;
+            background: #1e2227;
+        }
+
+        .content-block {
+            margin-bottom: 2rem;
+        }
+
+        .content-block p {
+            margin-bottom: 1rem;
+            color: #cfd9e6;
+            font-size: 0.95rem;
+        }
+
+        .project-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            color: #a9705e;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.4rem;
+        }
+
+        .project-item p {
+            margin-bottom: 0.3rem;
+        }
+
+        .project-item ul {
+            list-style: none;
+            margin-top: 0.3rem;
+        }
+
+        .project-item li {
+            font-size: 0.9rem;
+            color: #b5c0d0;
+            margin-bottom: 0.2rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .project-item li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e86f5e;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .skill-tag {
+            background: #262d35;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #3a424b;
+            color: #ccd6f0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #2f353d;
+            margin: 1.5rem 0;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #6f7a8a;
+            text-align: right;
+            margin-top: 1rem;
+            border-top: 1px solid #2f353d;
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid #2f353d;
+            }
+            .header {
+                padding: 1.8rem;
+            }
+            .name-title h1 {
+                font-size: 2.3rem;
+            }
+            .photo-placeholder {
+                max-width: 200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .quote-line {
+            border-left: 3px solid #e86f5e;
+            padding-left: 1.2rem;
+            font-style: normal;
+            color: #b5c0d0;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-card">
+        <div class="header">
+            <div class="name-title">
+                <h1>Дарья Воробьева</h1>
+                <div class="tagline">сценарист · писатель · fullstack-разработчик</div>
+            </div>
+            <div class="quick-info">
+                <span><i>гражданство</i> Россия</span>
+                <span><i>дата рождения</i> 03.07.2003</span>
+                <span><i>телеграм</i> @InIngini</span>
+                <span><i>готовность</i> удаленная работа</span>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="sidebar">
+                <div class="photo-placeholder">
+                    <img src="https://sun9-48.userapi.com/s/v1/ig2/5nLKXhwGRYTwhCCtouonfPIVls9heb9GT3KKzh8kVf8PEBr-DG13Tl6VoGZLfNh6nY4dN8EVNY0ha9guKNZqPAr-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x214,240x320,360x480,480x641,540x721,640x854,720x961,959x1280&from=bu&cs=959x0" alt="фото">
+                </div>
+
+                <div class="section">
+                    <div class="section-title">портфолио</div>
+                    <ul class="link-list">
+                        <li><a href="https://ficbook.net/authors/2049261" target="_blank"><span class="bullet">●</span> Фикбук</a></li>
+                        <li><a href="https://litnet.com/ru/ingini-u3180748" target="_blank"><span class="bullet">●</span> Литнет</a></li>
+                        <li><a href="https://t.me/InginiBlog" target="_blank"><span class="bullet">●</span> Telegram-канал</a></li>
+                        <li><a href="https://vk.com/lngini" target="_blank"><span class="bullet">●</span> Группа ВК</a></li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">писательские</div>
+                    <div class="badge-container">
+                        <span class="badge">сюжет</span>
+                        <span class="badge">диалоги</span>
+                        <span class="badge">персонажи</span>
+                        <span class="badge">редактура</span>
+                        <span class="badge">фэнтези</span>
+                        <span class="badge">dark romance</span>
+                        <span class="badge">young adult</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">технические / командные</div>
+                    <div class="badge-container">
+                        <span class="badge">Git / API</span>
+                        <span class="badge">понимание БД</span>
+                        <span class="badge">архитектура</span>
+                        <span class="badge">дедлайны</span>
+                        <span class="badge">кросс-функц.</span>
+                        <span class="badge">обратная связь</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">знание платформы</div>
+                    <div style="color:#b5c0d0; font-size:0.9rem;">
+                        читатель Клуба Романтики, понимание механик и аудитории
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; font-size:0.85rem; color:#6f7a8a; border-top: 1px dashed #2f353d; padding-top: 1rem;">
+                    <i>«Тьма не приходит извне — она рождается внутри»</i><br>
+                    <span style="color:#4f5a68;">— из цикла «Пороки»</span>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="content-block">
+                    <div class="section-title">обо мне</div>
+                    <p>
+                        Пишу 9 лет. Начинала с фанфиков (некоторые набирали больше 1000 лайков), 
+                        сейчас работаю над собственным циклом книг в жанре фэнтези — <strong>«Пороки»</strong>. 
+                        Сейчас в процессе написания третьей части.
+                    </p>
+                    <p>
+                        Параллельно работаю fullstack-разработчиком. Это дает мне не только технический склад ума, 
+                        но и понимание командной работы над цифровым продуктом, дедлайнов, 
+                        и умение говорить с разработчиками и дизайнерами на одном языке.
+                    </p>
+                    <p>
+                        Я — читатель <em>Клуба Романтики</em>. Я знаю, что работает, а что нет, 
+                        какие персонажи цепляют, а какие сюжеты хочется переигрывать. 
+                        Свои истории я пишу с оглядкой на эту аудиторию, потому что я сама — ее часть.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <div class="section-title">почему я подхожу вам</div>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div><span style="color:#e86f5e; font-weight:600;">→</span> <strong>Структура и эмоции.</strong> 9 лет практики — сюжет, диалоги, персонажи, которым сопереживают.</div>
+                        <div><span style="color:#e86f5e; font-weight:600;">→</span> <strong>Техническая сторона.</strong> Понимаю код, ветвления, что реализуемо в игре — упрощаю коммуникацию с командой.</div>
+                        <div><span style="color:#e86f5e; font-weight:600;">→</span> <strong>Аудитория.</strong> Пишу не в стол, знаю платформу и запросы читателей КР.</div>
+                        <div><span style="color:#e86f5e; font-weight:600;">→</span> <strong>Командная работа.</strong> Опыт в IT — умение слышать правки, отстаивать мнение, соблюдать сроки.</div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="section-title">ключевые проекты</div>
+
+                    <div class="project-item">
+                        <div class="project-meta">2024–2025 · самиздат</div>
+                        <h4>Цикл книг «Пороки» (в процессе)</h4>
+                        <p>Авторский цикл в жанре темное фэнтези / young adult.</p>
+                        <ul>
+                            <li>Написана и готовится к публикации первая книга (28 глав). Веду блог, делюсь процессом, общаюсь с читателями.</li>
+                            <li>Проработана мифология мира, система магии, иерархия Ада, глубокие неоднозначные персонажи.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-meta">9 лет · фикбук, сети</div>
+                        <h4>Фанфикшн</h4>
+                        <ul>
+                            <li>Опыт написания разножанровых текстов, работа с разными вселенными и персонажами.</li>
+                            <li>Некоторые работы превысили отметку в 1000 лайков — понимание читательских ожиданий.</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-meta">текущий опыт · IT</div>
+                        <h4>Fullstack-разработчик</h4>
+                        <ul>
+                            <li>Работа над крупными проектами, pet-проекты с нуля, взаимодействие в команде, оценка сроков.</li>
+                            <li>Этот опыт помогает смотреть на игру не только как автор, но и как человек, понимающий механику создания.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="section-title">почему эта вакансия</div>
+                    <div class="quote-line">
+                        Я хочу работать там, где пересекаются мои интересы: литература и игры. 
+                        Вакансия в Клубе Романтики дает возможность заниматься тем, что я люблю (писать истории), 
+                        в среде, которую я хорошо знаю (интерактивные новеллы), и с людьми, чей язык понимаю (разработчиками).
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    готовность к удаленной работе · резюме обновлено 13.03.2026
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
